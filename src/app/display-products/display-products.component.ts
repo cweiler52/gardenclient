@@ -12,10 +12,10 @@ export class DisplayProductsComponent implements OnInit {
   constructor(private dbService: DatabaseService ){}
   
   ngOnInit() {
-    this.getPlants();
+    this.getProducts();
   }
   
-  getPlants() : void {
+  getProducts() : void {
     this.dbService.getPlants().subscribe(Plants => {
       this.plants = Plants;
     })

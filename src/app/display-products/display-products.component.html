@@ -1,5 +1,5 @@
 <div *ngIf="plants.length !== 0; else noPlant">
-    <div *ngFor="let plant of plants" class="deck">
+    <div *ngFor="let plant of plants | paginate: { itemsPerPage: 10, currentPage: p }" class="deck">
         <div class="card">
             <div class="cardContainer">
                 <h1><em>{{plant.product_name}}</em></h1>
@@ -11,3 +11,5 @@
         </div>
     </div>
 </div>
+
+<pagination-controls (pageChange)="p=$event"></pagination-controls>
