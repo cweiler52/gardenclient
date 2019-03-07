@@ -1,0 +1,15 @@
+<div *ngIf="plants.length !== 0; else noPlant">
+    <div *ngFor="let plant of plants | paginate: { itemsPerPage: 10, currentPage: p }" class="deck">
+        <div class="card">
+            <div class="cardContainer">
+                <h1><em>{{plant.product_name}}</em></h1>
+                <h3>{{plant.product_description}}</h3>
+                <p>{{plant.product_price}}</p>
+                <img src="{{plant.product_image}}" />
+            </div>
+            <button *ngIf="auth === true">Delete</button>
+        </div>
+    </div>
+</div>
+
+<pagination-controls (pageChange)="p=$event"></pagination-controls>
