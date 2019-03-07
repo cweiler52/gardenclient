@@ -1,3 +1,11 @@
-h1, h2, #contact {
-    text-align: center
+.about {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    
 }
+
+/* #contact {
+    border-style: double;
+    border-color: coral;
+    border-width: 7px;
+} */
