@@ -9,6 +9,7 @@ import { DatabaseService } from '../services/database.service';
 })
 export class AuthComponent implements OnInit {
   loginUserData = {}
+  plants = []
   constructor(private dbService: DatabaseService) { }
 
   ngOnInit() {
@@ -19,11 +20,13 @@ export class AuthComponent implements OnInit {
     this.dbService.loginUser(this.loginUserData)
       .subscribe(
         res => console.log(res),
-        err => console.log(err)
+        err => console.log(err),
+        () => this.dbService.getPlants().subscribe(res => this.plants = res)
       )
   }
 
   onLogout() {
     this.dbService.logoutUser()
+    this.dbService.getPlants().subscribe(res => this.plants = res)
   }
 }
