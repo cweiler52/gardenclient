@@ -7,6 +7,7 @@ import { DatabaseService } from './services/database.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { DesignHomeComponent } from './design-home/design-home.component';
 import { AboutComponent } from './about/about.component';
 import { AuthComponent } from './auth/auth.component';
 import { DisplayProductsComponent } from './display-products/display-products.component';
@@ -14,6 +15,7 @@ import { DisplayProductsComponent } from './display-products/display-products.co
 @NgModule({
   declarations: [
     AppComponent,
+    DesignHomeComponent,
     AboutComponent,
     AuthComponent,
     DisplayProductsComponent
