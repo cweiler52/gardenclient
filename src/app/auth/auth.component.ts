@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import {DatabaseService} from '../services/database.service';
-import { first } from 'rxjs/operators';
-import { Router, ActivatedRoute } from '@angular/router';
+import { DatabaseService } from '../services/database.service';
 
 
 @Component({
@@ -11,15 +8,8 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./auth.component.css']
 })
 export class AuthComponent implements OnInit {
-  user = [];
-  login: FormGroup;
-
-  constructor(
-      private fb: FormBuilder, 
-      private dbService: DatabaseService,
-      private route: ActivatedRoute,
-      private router: Router,
-      ) { }
+  loginUserData = {}
+  constructor(private dbService: DatabaseService) { }
 
   ngOnInit() {
     this.login = this.fb.group({
@@ -29,15 +19,16 @@ export class AuthComponent implements OnInit {
 
   }
 
-  onLogin() : void {
-    this.dbService.login(this.email.value, this.password.value)
-    .pipe(first())
-    .subscribe(
-        data => {
-            this.router.navigate([this.returnUrl]);
-        },
-        error => {
-            this.alertService.error(error);
-        });
+  onLogin() {
+    // console.log(this.loginUserData)
+    this.dbService.loginUser(this.loginUserData)
+      .subscribe(
+        res => console.log(res),
+        err => console.log(err)
+      )
+  }
+
+  onLogout() {
+    this.dbService.logoutUser()
   }
 }

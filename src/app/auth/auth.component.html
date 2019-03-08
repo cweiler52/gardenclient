@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <form [formGroup]="login" (ngSubmit)="onLogin()">
 
   <label for="email"> Enter Your Email </label>
@@ -9,5 +10,29 @@
   <button type="submit">
     Login
   </button>
+=======
+<form>
 
+<label for="email"> Enter Your Email </label>
+<input
+[(ngModel)]="loginUserData.email"
+type="email"
+name="email"
+required>
+
+<label for="password">Enter Your Password</label>
+<input
+[(ngModel)]="loginUserData.password"
+type="text"
+name="password"
+required>
+
+<button
+type="button" (click)="onLogin()">
+Login</button>
+>>>>>>> 042389bb4e650047d932c31afb137704837f6a43
+
+<button
+type="button" (click)="onLogout()">
+Logout</button>
 </form>
