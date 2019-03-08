@@ -26,7 +26,7 @@ export class DatabaseService {
   
   deletePlant(id: any) : Observable<Plant> {
     const deleteProductsUrl = `${this.dbProductsUrl}/${id}`;
-    console.log(deleteProductsUrl);
+    // console.log(deleteProductsUrl);
     return this.http.delete<Plant>(deleteProductsUrl, httpOptions);
   }
 
@@ -36,7 +36,6 @@ export class DatabaseService {
          if (user && user.token) {
              localStorage.setItem('token', user.token);
          }
-         this.getPlants();
          return user;
       }));
   }
