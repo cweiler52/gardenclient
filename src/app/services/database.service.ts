@@ -42,6 +42,5 @@ export class DatabaseService {
 
   logoutUser() {
       localStorage.removeItem('token');
-      this.getPlants();
   }
 }
