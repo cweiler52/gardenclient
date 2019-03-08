@@ -36,11 +36,13 @@ export class DatabaseService {
          if (user && user.token) {
              localStorage.setItem('token', user.token);
          }
+         this.getPlants();
          return user;
       }));
   }
 
-  logout() {
+  logoutUser() {
       localStorage.removeItem('token');
+      this.getPlants();
   }
 }

@@ -25,7 +25,10 @@ export class DisplayProductsComponent implements OnInit {
 
   onDeletePlant(id) {
     //console.log('delete plant id: '+id)
-    this.dbService.deletePlant(id);
+    this.dbService.deletePlant(id).subscribe(
+      res => console.log(res),
+      err => console.log(err)
+    );
     this.getProducts();
   }
 }

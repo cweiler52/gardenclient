@@ -22,4 +22,8 @@ export class AuthComponent implements OnInit {
         err => console.log(err)
       )
   }
+
+  onLogout() {
+    this.dbService.logoutUser()
+  }
 }
