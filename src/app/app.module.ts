@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination'
 import { DatabaseService } from './services/database.service';
@@ -21,6 +22,7 @@ import { DisplayProductsComponent } from './display-products/display-products.co
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     NgxPaginationModule
   ],
   providers: [

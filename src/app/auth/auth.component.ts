@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import {DatabaseService} from '../services/database.service';
+import { DatabaseService } from '../services/database.service';
 
 
 @Component({
@@ -9,10 +8,22 @@ import {DatabaseService} from '../services/database.service';
   styleUrls: ['./auth.component.css']
 })
 export class AuthComponent implements OnInit {
-
-  constructor() { }
+  loginUserData = {}
+  constructor(private dbService: DatabaseService) { }
 
   ngOnInit() {
   }
 
+  onLogin() {
+    // console.log(this.loginUserData)
+    this.dbService.loginUser(this.loginUserData)
+      .subscribe(
+        res => console.log(res),
+        err => console.log(err)
+      )
+  }
+
+  onLogout() {
+    this.dbService.logoutUser()
+  }
 }

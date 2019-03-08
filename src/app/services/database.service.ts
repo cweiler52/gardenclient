@@ -6,7 +6,8 @@ import { map } from 'rxjs/operators';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    'Authorization': localStorage.getItem('token')
   })
 }
 
@@ -22,27 +23,25 @@ export class DatabaseService {
   getPlants() : Observable<Plant[]> {
     return this.http.get<Plant[]>(this.dbProductsUrl);
   }
-
-  login(email: string, password: string) {
-    return this.http.post<any>(this.dbAuthUrl, { email: email, password: password })
-        .pipe(map(user => {
-            // login successful if there's a jwt token in the response
-            if (user && user.token) {
-                // store user details and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem('token', user.token);
-            }
-
-            return user;
-        }));
-  }
-
-  logout() {
-      // remove user from local storage to log user out
-      localStorage.removeItem('token');
-  }
-
-  deletePlant(id: any) : Observable<Plant[]> {
+  
+  deletePlant(id: any) : Observable<Plant> {
     const deleteProductsUrl = `${this.dbProductsUrl}/${id}`;
-    return this.http.delete<Plant[]>(deleteProductsUrl, httpOptions);
+    // console.log(deleteProductsUrl);
+    return this.http.delete<Plant>(deleteProductsUrl, httpOptions);
+  }
+
+  loginUser(user) {
+    return this.http.post<any>(this.dbAuthUrl, user)
+      .pipe(map(user => {
+         if (user && user.token) {
+             localStorage.setItem('token', user.token);
+         }
+         return user;
+      }));
+  }
+
+  logoutUser() {
+      localStorage.removeItem('token');
+      this.getPlants();
   }
 }
