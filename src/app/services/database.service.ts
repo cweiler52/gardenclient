@@ -2,10 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Plant } from '../models/plant.model';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    'Authorization': localStorage.getItem('token')
   })
 }
 
@@ -20,5 +22,25 @@ export class DatabaseService {
 
   getPlants() : Observable<Plant[]> {
     return this.http.get<Plant[]>(this.dbProductsUrl);
+  }
+  
+  deletePlant(id: any) : Observable<Plant> {
+    const deleteProductsUrl = `${this.dbProductsUrl}/${id}`;
+    // console.log(deleteProductsUrl);
+    return this.http.delete<Plant>(deleteProductsUrl, httpOptions);
+  }
+
+  loginUser(user) {
+    return this.http.post<any>(this.dbAuthUrl, user)
+      .pipe(map(user => {
+         if (user && user.token) {
+             localStorage.setItem('token', user.token);
+         }
+         return user;
+      }));
+  }
+
+  logoutUser() {
+      localStorage.removeItem('token');
   }
 }
