@@ -1,0 +1,31 @@
+#card-02{
+opacity: .8;
+height: 35vh;
+}
+
+/* Company Focus Css */
+#height-cf {
+    height: 40vh;
+    text-align: center;
+    margin-top: -7%;
+    overflow: scroll;
+    position: relative;
+    font-family: 'Special Elite';
+}
+/* END of CFocus */
+
+#img-cactus {
+    margin-top: -5%;
+    position: relative;
+    opacity: .9;
+}
+
+
+#about {
+    background-color: rgb(252, 252, 252);
+    height: 45vh;
+    opacity: .8;
+    text-align: center;
+}
+
+
