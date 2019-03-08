@@ -10,8 +10,10 @@ export class DisplayProductsComponent implements OnInit {
   plants = [];
 
   constructor(private dbService: DatabaseService ){}
-  
+  public _auth: boolean = false;
+
   ngOnInit() {
+    this._auth = localStorage.getItem('token') ? true : false;
     this.getProducts();
   }
   
@@ -19,5 +21,11 @@ export class DisplayProductsComponent implements OnInit {
     this.dbService.getPlants().subscribe(Plants => {
       this.plants = Plants;
     })
+  }
+
+  onDeletePlant(id) {
+    //console.log('delete plant id: '+id)
+    this.dbService.deletePlant(id);
+    this.getProducts();
   }
 }
